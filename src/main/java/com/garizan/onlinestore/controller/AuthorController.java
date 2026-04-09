@@ -24,18 +24,8 @@ public class AuthorController {
         return authorService.getById(id);
     }
 
-    @PostMapping
-    public Author create(@RequestBody Author author) {
-        return authorService.create(author);
-    }
-
-    @PutMapping("/{id}")
-    public Author update(@PathVariable  Long id, @RequestBody Author author) {
-        return authorService.update(id, author);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        authorService.delete(id);
+    @GetMapping("/search")
+    public List<Author> search(@RequestParam String name) {
+        return authorService.searchByName(name);
     }
 }
