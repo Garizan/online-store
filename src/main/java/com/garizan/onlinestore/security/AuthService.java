@@ -17,7 +17,6 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public Customer register(RegisterRequest req) {
-
         if (customerRepository.existsByEmail(req.email())) {
             throw new RuntimeException("User already exists");
         }
@@ -26,6 +25,7 @@ public class AuthService {
         user.setName(req.name());
         user.setEmail(req.email());
         user.setPasswordHash(passwordEncoder.encode(req.password()));
+        user.setRole("USER");
 
         return customerRepository.save(user);
     }

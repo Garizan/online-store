@@ -27,6 +27,7 @@ export default function Register({ setIsLoggedIn }) {
 
             localStorage.setItem("token", data.token);
             localStorage.setItem("customerId", data.customerId);
+            localStorage.setItem("role", data.role);
 
             setIsLoggedIn(true);
             navigate("/", { replace: true });

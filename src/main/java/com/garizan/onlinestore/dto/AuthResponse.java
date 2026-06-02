@@ -2,5 +2,6 @@ package com.garizan.onlinestore.dto;
 
 public record AuthResponse(
         String token,
-        Long customerId
+        Long customerId,
+        String role
 ) {}

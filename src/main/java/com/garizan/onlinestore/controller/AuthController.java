@@ -21,7 +21,11 @@ public class AuthController {
         Customer customer = authService.register(req);
         String token = authService.generateToken(customer);
 
-        return new AuthResponse(token, customer.getId());
+        return new AuthResponse(
+                token,
+                customer.getId(),
+                customer.getRole()
+        );
     }
 
     @PostMapping("/login")
@@ -29,6 +33,10 @@ public class AuthController {
         Customer customer = authService.login(req);
         String token = authService.generateToken(customer);
 
-        return new AuthResponse(token, customer.getId());
+        return new AuthResponse(
+                token,
+                customer.getId(),
+                customer.getRole()
+        );
     }
 }

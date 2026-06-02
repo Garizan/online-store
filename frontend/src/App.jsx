@@ -9,6 +9,7 @@ import Cart from './components/Cart';
 import Footer from "./components/Footer.jsx";
 import BookDetails from './components/BookDetails';
 import Orders from './components/Orders';
+import AdminBooks from './components/AdminBooks';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
                 <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
+                <Route path="/admin/books" element={<AdminBooks />} />
             </Routes>
 
             <Footer />

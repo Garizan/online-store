@@ -11,6 +11,9 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
     const menuRef = useRef(null);
     const profileRef = useRef(null);
 
+    const role = localStorage.getItem("role");
+    const isAdmin = role === "ADMIN";
+
     const getEmail = () => {
         const token = localStorage.getItem("token");
 
@@ -56,6 +59,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
         localStorage.removeItem("token");
         localStorage.removeItem("customerId");
         localStorage.removeItem("cart");
+        localStorage.removeItem("role");
 
         setIsLoggedIn(false);
         setProfileOpen(false);
@@ -99,6 +103,12 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                         <button onClick={() => goTo("/orders")}>
                             📦 Orders
                         </button>
+
+                        {isAdmin && (
+                            <button onClick={() => goTo("/admin/books")}>
+                                ⚙️ Admin
+                            </button>
+                        )}
                     </div>
                 )}
             </div>
