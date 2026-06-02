@@ -1,8 +1,9 @@
 package com.garizan.onlinestore.service;
 
-import lombok.RequiredArgsConstructor;
+import com.garizan.onlinestore.exception.AuthorNotFoundException;
 import com.garizan.onlinestore.model.Author;
 import com.garizan.onlinestore.repository.AuthorRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +19,15 @@ public class AuthorService {
     }
 
     public Author getById(Long id) {
-        return authorRepository.findById(id).orElse(null);
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new AuthorNotFoundException(id));
     }
 
     public List<Author> searchByName(String name) {
-        if (name == null || name.isBlank()) return authorRepository.findAll();
+        if (name == null || name.isBlank()) {
+            return authorRepository.findAll();
+        }
+
         return authorRepository.findByNameContainingIgnoreCase(name.trim());
     }
 }
-
