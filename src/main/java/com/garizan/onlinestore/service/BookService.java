@@ -17,7 +17,7 @@ public class BookService {
     private final AuthorRepository authorRepository;
 
     public List<Book> getAll() {
-        return bookRepository.findAll();
+        return bookRepository.findByQuantityGreaterThan(0);
     }
 
     public Book getById(Long id) {
@@ -47,5 +47,16 @@ public class BookService {
 
     public void delete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public List<Book> searchByTitle(String title) {
+        if (title == null || title.isBlank()) {
+            return bookRepository.findByQuantityGreaterThan(0);
+        }
+
+        return bookRepository.findByTitleContainingIgnoreCaseAndQuantityGreaterThan(
+                title.trim(),
+                0
+        );
     }
 }

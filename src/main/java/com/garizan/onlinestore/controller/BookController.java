@@ -29,6 +29,11 @@ public class BookController {
         return bookService.create(book);
     }
 
+    @GetMapping("/search")
+    public List<Book> search(@RequestParam String title) {
+        return bookService.searchByTitle(title);
+    }
+
     @PutMapping("/{id}")
     public Book update(@PathVariable Long id, @RequestBody Book book) {
         return bookService.update(id, book);
@@ -38,4 +43,6 @@ public class BookController {
     public void delete(@PathVariable Long id) {
         bookService.delete(id);
     }
+
+
 }

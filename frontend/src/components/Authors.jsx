@@ -14,7 +14,7 @@ export default function Authors() {
             setError('');
             setAuthors(await getAuthors());
         } catch {
-            setError('Не удалось загрузить авторов');
+            setError('Failed to load authors');
         } finally {
             setLoading(false);
         }
@@ -33,7 +33,7 @@ export default function Authors() {
             setError('');
             setAuthors(q ? await searchAuthors(q) : await getAuthors());
         } catch {
-            setError('Не удалось выполнить поиск');
+            setError('Failed to search authors');
         } finally {
             setLoading(false);
         }
@@ -42,25 +42,25 @@ export default function Authors() {
     return (
         <div className="authors-page">
             <div className="authors-card">
-                <h2>Поиск авторов</h2>
+                <h2>Search Authors</h2>
 
                 {error && <div className="error-box">{error}</div>}
 
                 <form className="author-form" onSubmit={handleSearch}>
                     <input
                         type="text"
-                        placeholder="Введите имя автора"
+                        placeholder="Enter author name"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
-                    <button type="submit">Найти</button>
-                    <button type="button" onClick={loadAuthors}>Сброс</button>
+                    <button type="submit">Search</button>
+                    <button type="button" onClick={loadAuthors}>Reset</button>
                 </form>
 
                 {loading ? (
-                    <p className="empty">Загрузка...</p>
+                    <p className="empty">Loading...</p>
                 ) : authors.length === 0 ? (
-                    <p className="empty">Авторы не найдены</p>
+                    <p className="empty">No authors found</p>
                 ) : (
                     <ul className="authors-list">
                         {authors.map((author) => (

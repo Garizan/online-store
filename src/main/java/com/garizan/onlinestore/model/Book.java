@@ -30,4 +30,8 @@ public class Book {
 
     @Column(nullable = false)
     private Integer quantity;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private Genre genre;
 }

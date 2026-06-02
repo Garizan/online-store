@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { registerCustomer } from "../api/authApi";
+import { loginCustomer } from "../api/authApi";
 import "./Auth.css";
 
-export default function Register({ setIsLoggedIn }) {
-    const [name, setName] = useState("");
+export default function Login({ setIsLoggedIn }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -19,11 +18,7 @@ export default function Register({ setIsLoggedIn }) {
         try {
             setLoading(true);
 
-            const data = await registerCustomer({
-                name,
-                email,
-                password
-            });
+            const data = await loginCustomer({ email, password });
 
             localStorage.setItem("token", data.token);
             localStorage.setItem("customerId", data.customerId);
@@ -31,7 +26,7 @@ export default function Register({ setIsLoggedIn }) {
             setIsLoggedIn(true);
             navigate("/", { replace: true });
         } catch (err) {
-            setError(err.message || "Registration failed");
+            setError(err.message || "Invalid email or password");
         } finally {
             setLoading(false);
         }
@@ -40,20 +35,12 @@ export default function Register({ setIsLoggedIn }) {
     return (
         <div className="auth-page">
             <div className="auth-card">
-                <h2>Register</h2>
+                <h2>Login</h2>
                 <p className="auth-subtitle">
-                    Create your Online Store account
+                    Welcome back to Online Store
                 </p>
 
                 <form className="auth-form" onSubmit={onSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
-
                     <input
                         type="email"
                         placeholder="Email"
@@ -68,19 +55,18 @@ export default function Register({ setIsLoggedIn }) {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        minLength={6}
                     />
 
                     <button type="submit" disabled={loading}>
-                        {loading ? "Registering..." : "Register"}
+                        {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
 
                 {error && <p className="auth-error">{error}</p>}
 
                 <p className="auth-link">
-                    Already have an account?{" "}
-                    <Link to="/login">Login</Link>
+                    Don&apos;t have an account?{" "}
+                    <Link to="/register">Register</Link>
                 </p>
             </div>
         </div>

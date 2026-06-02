@@ -5,6 +5,7 @@ import com.garizan.onlinestore.dto.RegisterRequest;
 import com.garizan.onlinestore.model.Customer;
 import com.garizan.onlinestore.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +14,9 @@ public class AuthService {
 
     private final CustomerRepository customerRepository;
     private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
 
-    public String register(RegisterRequest req) {
+    public Customer register(RegisterRequest req) {
 
         if (customerRepository.existsByEmail(req.email())) {
             throw new RuntimeException("User already exists");
@@ -23,23 +25,23 @@ public class AuthService {
         Customer user = new Customer();
         user.setName(req.name());
         user.setEmail(req.email());
+        user.setPasswordHash(passwordEncoder.encode(req.password()));
 
-        user.setPasswordHash(req.password());
-
-        customerRepository.save(user);
-
-        return jwtService.generateToken(user.getEmail());
+        return customerRepository.save(user);
     }
 
-    public String login(LoginRequest req) {
-
+    public Customer login(LoginRequest req) {
         Customer user = customerRepository.findByEmail(req.email())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!user.getPasswordHash().equals(req.password())) {
+        if (!passwordEncoder.matches(req.password(), user.getPasswordHash())) {
             throw new RuntimeException("Wrong password");
         }
 
-        return jwtService.generateToken(user.getEmail());
+        return user;
+    }
+
+    public String generateToken(Customer customer) {
+        return jwtService.generateToken(customer.getEmail());
     }
 }

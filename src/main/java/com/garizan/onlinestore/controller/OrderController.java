@@ -1,10 +1,12 @@
 package com.garizan.onlinestore.controller;
 
+import com.garizan.onlinestore.dto.CheckoutRequest;
 import com.garizan.onlinestore.model.OrderItem;
 import com.garizan.onlinestore.service.OrderService;
 import com.garizan.onlinestore.model.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -25,10 +27,21 @@ public class OrderController {
         return orderService.getById(id);
     }
 
+    @PostMapping("/checkout")
+    public Order checkout(@RequestBody CheckoutRequest request) {
+        return orderService.checkout(request);
+    }
+
+    @GetMapping("/customer/{customerId}")
+    public List<Order> getByCustomer(@PathVariable Long customerId) {
+        return orderService.getByCustomerId(customerId);
+    }
+
     @PostMapping
     public Order create(@RequestBody Order order) {
         return orderService.create(order);
     }
+
 
     @PostMapping("/{id}/items")
     public Order addItem(@PathVariable Long id, @RequestBody OrderItem item) {

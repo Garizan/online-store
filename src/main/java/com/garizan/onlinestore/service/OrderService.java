@@ -1,5 +1,8 @@
 package com.garizan.onlinestore.service;
 
+import com.garizan.onlinestore.dto.CheckoutItemRequest;
+import com.garizan.onlinestore.dto.CheckoutRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import com.garizan.onlinestore.model.Book;
 import com.garizan.onlinestore.model.Customer;
@@ -28,6 +31,47 @@ public class OrderService {
     public Order getById(Long id) {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
+
+    public List<Order> getByCustomerId(Long customerId) {
+        return orderRepository.findByCustomerId(customerId);
+    }
+
+    @Transactional
+    public Order checkout(CheckoutRequest request) {
+        Customer customer = customerRepository.findById(request.customerId())
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        Order order = new Order();
+        order.setCustomer(customer);
+
+        List<OrderItem> orderItems = new ArrayList<>();
+
+        for (CheckoutItemRequest itemRequest : request.items()) {
+            Book book = bookRepository.findById(itemRequest.bookId())
+                    .orElseThrow(() -> new RuntimeException("Book not found"));
+
+            if (itemRequest.quantity() <= 0) {
+                throw new RuntimeException("Quantity must be greater than zero");
+            }
+
+            if (book.getQuantity() < itemRequest.quantity()) {
+                throw new RuntimeException("Not enough books in stock: " + book.getTitle());
+            }
+
+            book.setQuantity(book.getQuantity() - itemRequest.quantity());
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order);
+            orderItem.setBook(book);
+            orderItem.setQuantity(itemRequest.quantity());
+
+            orderItems.add(orderItem);
+        }
+
+        order.setItems(orderItems);
+
+        return orderRepository.save(order);
     }
 
     public Order create(Order order) {

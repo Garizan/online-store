@@ -1,0 +1,151 @@
+.header {
+    height: 70px;
+    padding: 0 28px;
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    position: relative;
+}
+
+.burger-btn {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #111827;
+
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.burger-btn:hover {
+    background: #f3f4f6;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+    color: #111827;
+    text-decoration: none;
+}
+
+.burger-menu {
+    position: absolute;
+    top: 52px;
+    left: 0;
+
+    width: 220px;
+    padding: 10px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.burger-menu button {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.burger-menu button:hover {
+    background: #f3f4f6;
+}
+
+.profile {
+    position: relative;
+}
+
+.profile-btn {
+    background: #4f46e5;
+    color: white;
+
+    border: none;
+    border-radius: 50%;
+
+    width: 42px;
+    height: 42px;
+
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile-menu {
+    position: absolute;
+    right: 0;
+    top: 52px;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    padding: 14px 16px;
+    min-width: 220px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.profile-title {
+    margin: 0 0 4px;
+    font-weight: bold;
+}
+
+.profile-email {
+    margin: 0 0 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 9px 0;
+
+    background: #ef4444;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+.login-btn {
+    background: #4f46e5;
+    color: white;
+
+    padding: 9px 18px;
+    border-radius: 7px;
+
+    text-decoration: none;
+}
