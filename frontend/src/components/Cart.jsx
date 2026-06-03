@@ -147,8 +147,8 @@ export default function Cart() {
                     <div className="cart-item" key={item.id}>
                         <div>
                             <h3>{item.title}</h3>
-                            <p>💰 Price: {item.price} Lei</p>
-                            <p>📦 Quantity: {item.cartQuantity}</p>
+                            <p> Price: {item.price} Lei</p>
+                            <p> Quantity: {item.cartQuantity}</p>
                         </div>
 
                         <button

@@ -121,7 +121,7 @@ export default function Books() {
 
             <section className="hero">
                 <div>
-                    <p className="hero-badge">📚 Online Book Store</p>
+                    <p className="hero-badge"> Online Book Store</p>
                     <h1>Find Your Next Book</h1>
                     <p className="hero-text">
                         A catalog of popular books, classics, fantasy, and detective stories.
@@ -178,12 +178,12 @@ export default function Books() {
 
                                 <div className="book-info">
                                     {book.author?.name && (
-                                        <p>✍️ Author: {book.author.name}</p>
+                                        <p> Author: {book.author.name}</p>
                                     )}
 
-                                    <p>🏷️ Genre: {book.genre}</p>
-                                    <p>💰 Price: {book.price} Lei</p>
-                                    <p>📦 In stock: {book.quantity}</p>
+                                    <p> Genre: {book.genre}</p>
+                                    <p> Price: {book.price} Lei</p>
+                                    <p> In stock: {book.quantity}</p>
                                 </div>
 
                                 <div className="book-actions">

@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className="footer">
             <div className="footer-content">
                 <div>
-                    <h3>📚 Online Store</h3>
+                    <h3> Online Store</h3>
                     <p>Book catalog and online ordering system.</p>
                 </div>
 

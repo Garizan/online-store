@@ -139,12 +139,12 @@ export default function Search() {
 
                             <div className="search-book-info">
                                 {book.author?.name && (
-                                    <p>✍️ Author: {book.author.name}</p>
+                                    <p> Author: {book.author.name}</p>
                                 )}
 
-                                <p>🏷️ Genre: {book.genre}</p>
-                                <p>💰 Price: {book.price} Lei</p>
-                                <p>📦 In stock: {book.quantity}</p>
+                                <p> Genre: {book.genre}</p>
+                                <p> Price: {book.price} Lei</p>
+                                <p> In stock: {book.quantity}</p>
                             </div>
 
                             <div className="search-book-actions">

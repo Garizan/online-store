@@ -83,30 +83,30 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                 </button>
 
                 <Link to="/" className="logo">
-                    📚 Online Store
+                     Online Store
                 </Link>
 
                 {menuOpen && (
                     <div className="burger-menu">
                         <button onClick={() => goTo("/")}>
-                            📚 Catalog
+                             Catalog
                         </button>
 
                         <button onClick={() => goTo("/search")}>
-                            🔍 Search
+                             Search
                         </button>
 
                         <button onClick={() => goTo("/cart")}>
-                            🛒 Cart
+                             Cart
                         </button>
 
                         <button onClick={() => goTo("/orders")}>
-                            📦 Orders
+                             Orders
                         </button>
 
                         {isAdmin && (
                             <button onClick={() => goTo("/admin/books")}>
-                                ⚙️ Admin
+                                 Admin
                             </button>
                         )}
                     </div>
