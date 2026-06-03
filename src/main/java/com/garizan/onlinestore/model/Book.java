@@ -34,4 +34,7 @@ public class Book {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
     private Genre genre;
+
+    @Column(length = 500)
+    private String imageUrl;
 }

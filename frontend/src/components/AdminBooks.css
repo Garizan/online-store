@@ -204,3 +204,12 @@
 .confirm-delete-btn:hover {
     background: #dc2626;
 }
+.admin-book-image {
+    width: 80px;
+    height: 110px;
+
+    object-fit: cover;
+    border-radius: 10px;
+
+    background: #e5e7eb;
+}

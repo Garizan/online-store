@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { searchBooks } from "../api/booksApi";
 import { addBookToCart } from "../utils/cartUtils";
+import { getBookImage } from "../utils/bookImages";
 import "./Search.css";
 
 export default function Search() {
@@ -135,6 +136,14 @@ export default function Search() {
                 <div className="search-results">
                     {books.map((book) => (
                         <div className="search-book-card" key={book.id}>
+                            {book.imageUrl && (
+                                <img
+                                    src={book.imageUrl}
+                                    alt={book.title}
+                                    className="search-book-image"
+                                />
+                            )}
+
                             <h3>{book.title}</h3>
 
                             <div className="search-book-info">
@@ -157,7 +166,6 @@ export default function Search() {
 
                                 <button
                                     className="search-cart-btn"
-                                    title="Add to cart"
                                     onClick={() => handleAddToCart(book)}
                                 >
                                     🛒

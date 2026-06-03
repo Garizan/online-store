@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchCustomerOrders } from "../api/ordersApi";
+import { getBookImage } from "../utils/bookImages";
 import "./Orders.css";
 
 export default function Orders() {
@@ -73,17 +74,25 @@ export default function Orders() {
                 </div>
             ) : (
                 <div className="orders-list">
-                    {orders.map((order) => (
+                    {orders.map((order, index) => (
                         <div className="order-card" key={order.id}>
                             <div className="order-header">
-                                <h2>Order #{order.id}</h2>
+                                <h2>Order #{index + 1}</h2>
                                 <span>Total: {getOrderTotal(order)} Lei</span>
                             </div>
 
                             <div className="order-items">
                                 {order.items.map((item) => (
                                     <div className="order-item" key={item.id}>
-                                        <div>
+                                        {item.book.imageUrl && (
+                                            <img
+                                                src={item.book.imageUrl}
+                                                alt={item.book.title}
+                                                className="order-book-image"
+                                            />
+                                        )}
+
+                                        <div className="order-item-info">
                                             <h3>{item.book.title}</h3>
 
                                             {item.book.author?.name && (

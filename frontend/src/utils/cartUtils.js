@@ -41,6 +41,7 @@ export function addBookToCart(book) {
             quantity: book.quantity,
             genre: book.genre,
             author: book.author,
+            imageUrl: book.imageUrl,
             cartQuantity: 1
         });
     }

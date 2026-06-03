@@ -11,7 +11,8 @@ export default function AdminBooks() {
         authorId: "",
         genre: "FANTASY",
         price: "",
-        quantity: ""
+        quantity: "",
+        imageUrl: ""
     });
 
     const [message, setMessage] = useState("");
@@ -76,6 +77,7 @@ export default function AdminBooks() {
             genre: form.genre,
             price: Number(form.price),
             quantity: Number(form.quantity),
+            imageUrl: form.imageUrl,
             author: {
                 id: Number(form.authorId)
             }
@@ -94,7 +96,8 @@ export default function AdminBooks() {
                 authorId: "",
                 genre: "FANTASY",
                 price: "",
-                quantity: ""
+                quantity: "",
+                imageUrl: ""
             });
 
             loadBooks();
@@ -229,6 +232,14 @@ export default function AdminBooks() {
                         required
                     />
 
+                    <input
+                        name="imageUrl"
+                        type="text"
+                        placeholder="Image URL, example: /images/books/hobbit.jpg"
+                        value={form.imageUrl}
+                        onChange={handleChange}
+                    />
+
                     <button type="submit">
                         Add book
                     </button>
@@ -239,6 +250,13 @@ export default function AdminBooks() {
 
                     {books.map((book) => (
                         <div className="admin-book-item" key={book.id}>
+                            {book.imageUrl && (
+                                <img
+                                    src={book.imageUrl}
+                                    alt={book.title}
+                                    className="admin-book-image"
+                                />
+                            )}
                             <div>
                                 <h3>{book.title}</h3>
                                 <p>ID: {book.id}</p>

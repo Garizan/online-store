@@ -14,6 +14,10 @@ export default function BookDetails() {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const showMessage = (text) => {
         setMessage(text);
 
@@ -124,7 +128,15 @@ export default function BookDetails() {
 
             <div className="book-details-card">
                 <div className="book-details-cover">
-                    📘
+                    {book.imageUrl ? (
+                        <img
+                            src={book.imageUrl}
+                            alt={book.title}
+                            className="book-details-image"
+                        />
+                    ) : (
+                        <span className="book-details-placeholder">📘</span>
+                    )}
                 </div>
 
                 <div className="book-details-info">
@@ -135,12 +147,12 @@ export default function BookDetails() {
                     <h1>{book.title}</h1>
 
                     {book.author?.name && (
-                        <p>✍️ <strong>Author:</strong> {book.author.name}</p>
+                        <p> <strong>Author:</strong> {book.author.name}</p>
                     )}
 
-                    <p>🏷️ <strong>Genre:</strong> {book.genre}</p>
-                    <p>💰 <strong>Price:</strong> {book.price} Lei</p>
-                    <p>📦 <strong>In stock:</strong> {book.quantity}</p>
+                    <p> <strong>Genre:</strong> {book.genre}</p>
+                    <p> <strong>Price:</strong> {book.price} Lei</p>
+                    <p> <strong>In stock:</strong> {book.quantity}</p>
 
                     <p className="book-description">
                         This page contains detailed information about the selected book.

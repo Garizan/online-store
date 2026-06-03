@@ -119,14 +119,31 @@ export default function Books() {
                 </div>
             )}
 
-            <section className="hero">
-                <div>
-                    <p className="hero-badge"> Online Book Store</p>
-                    <h1>Find Your Next Book</h1>
+            <section className="hero book-banner">
+                <div className="banner-content">
+                    <p className="hero-badge">Online Book Store</p>
+
+                    <h1>
+                        Books That <br />
+                        Change Your View
+                    </h1>
+
                     <p className="hero-text">
-                        A catalog of popular books, classics, fantasy, and detective stories.
-                        Choose, add to cart, and place your order.
+                        A dark bookstore for those who want more than just stories.
                     </p>
+
+                    <p className="banner-action">
+                        Choose. Read. Discover.
+                    </p>
+                </div>
+
+                <div className="banner-books">
+                    <div className="book-stack">
+                        <div className="book book-one">1984</div>
+                        <div className="book book-two">Fahrenheit 451</div>
+                        <div className="book book-three">Think and Grow Rich</div>
+                        <div className="book book-four">Nietzsche</div>
+                    </div>
                 </div>
             </section>
 
@@ -166,6 +183,13 @@ export default function Books() {
                     <div className="books-grid">
                         {sortedBooks.map((book) => (
                             <div className="book-card" key={book.id}>
+                                {book.imageUrl && (
+                                    <img
+                                        src={book.imageUrl}
+                                        alt={book.title}
+                                        className="book-card-image"
+                                    />
+                                )}
                                 <div className="book-top">
                                     <span className="book-badge">
                                         {book.quantity > 5

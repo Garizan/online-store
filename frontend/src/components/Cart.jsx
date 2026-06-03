@@ -6,6 +6,7 @@ import {
     clearCart
 } from "../utils/cartUtils";
 import { checkoutOrder } from "../api/ordersApi";
+import { getBookImage } from "../utils/bookImages";
 import "./Cart.css";
 
 export default function Cart() {
@@ -145,7 +146,15 @@ export default function Cart() {
             <div className="cart-list">
                 {cart.map((item) => (
                     <div className="cart-item" key={item.id}>
-                        <div>
+                        {item.imageUrl && (
+                            <img
+                                src={item.imageUrl}
+                                alt={item.title}
+                                className="cart-book-image"
+                            />
+                        )}
+
+                        <div className="cart-item-info">
                             <h3>{item.title}</h3>
                             <p> Price: {item.price} Lei</p>
                             <p> Quantity: {item.cartQuantity}</p>
